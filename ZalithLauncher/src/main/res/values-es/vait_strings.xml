@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="theme_color_dungeon">Dungeon</string>
-    <string name="about_launcher_based_on">Vaitcraft está basado en Zalith Launcher 2 (GPL-3.0) de MovTery y colaboradores. No es un producto oficial de Minecraft; no está aprobado ni asociado a Mojang o Microsoft.</string>
+    <string name="about_launcher_based_on">Vaitcraft es un launcher para acceder al servidor de Minecraft Vaitcraft. Discord: https://discord.gg/REEMPLAZAR. Basado en Zalith Launcher 2 (GPL-3.0) por MovTery y colaboradores, y en PojavLauncher. No es un producto oficial de Minecraft ni está asociado con Mojang o Microsoft.</string>
 </resources>
