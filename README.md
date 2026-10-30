@@ -13,7 +13,7 @@
 ## 📜 Derechos y Licencias
 
 ### Derechos de autor
-- **Zalith Launcher 2**: Copyright © 2026 ZalithLauncher / MovTery y colaboradores. Todos los derechos reservados.
+- **Zalith Launcher 2**: Copyright © 2025 ZalithLauncher / MovTery y colaboradores. Todos los derechos reservados.
 - **Proyectos de terceros y librerías**: Los créditos, licencias y derechos de autor de las herramientas utilizadas (como PojavLauncher, bibliotecas de Android, motores gráficos y componentes de código abierto) pertenecen a sus respectivos creadores originales.
 
 ### Licencia del código
