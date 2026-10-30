@@ -82,6 +82,8 @@ sealed interface LauncherUpgradeOperation {
  */
 private const val LATEST_VERSION = "latest_version_md.json"
 private const val LATEST_API_URL = "$URL_PROJECT_INFO/$LATEST_VERSION"
+//Vaitcraft: el comprobador apunta a las versiones oficiales de Zalith; desactivado en este fork
+private const val UPDATE_CHECK_ENABLED = false
 private const val LATEST_API_CHINESE_URL = "https://repo.miawa.cn/zalith-info/v2/$LATEST_VERSION"
 
 /**
@@ -190,6 +192,7 @@ class LauncherUpgradeViewModel: ViewModel() {
      * 从远端获取最新的启动器信息
      */
     private suspend fun fetchRemoteData(): RemoteData? {
+        if (!UPDATE_CHECK_ENABLED) return null
         return withContext(Dispatchers.IO) {
             runCatching {
                 withRetry(logTag = "LauncherUpgrade", maxRetries = 2) {

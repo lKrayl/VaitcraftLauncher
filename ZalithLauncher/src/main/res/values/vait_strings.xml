@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="theme_color_dungeon" tools:ignore="MissingTranslation">Dungeon</string>
+    <string name="about_launcher_based_on" tools:ignore="MissingTranslation">Vaitcraft is based on Zalith Launcher 2 (GPL-3.0) by MovTery and contributors. This is not an official Minecraft product; it is not approved by or associated with Mojang or Microsoft.</string>
+</resources>

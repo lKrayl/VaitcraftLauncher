@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import com.movtery.zalithlauncher.R
 import com.movtery.zalithlauncher.setting.AllSettings
+import com.movtery.zalithlauncher.ui.theme.ColorThemeType
 
 /**
  * 启动器UI深色主题
@@ -44,8 +45,10 @@ enum class DarkMode(val textRes: Int) {
 @Composable
 fun isLauncherInDarkTheme(): Boolean {
     val value = AllSettings.launcherDarkMode.state
-    return key(value) {
-        when (value) {
+    //Vaitcraft: el tema Dungeon es siempre oscuro
+    val forceDark = AllSettings.launcherColorTheme.state == ColorThemeType.DUNGEON
+    return key(value, forceDark) {
+        if (forceDark) true else when (value) {
             DarkMode.Enable -> true
             DarkMode.Disable -> false
             DarkMode.FollowSystem -> isSystemInDarkTheme()

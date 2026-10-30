@@ -22,6 +22,7 @@ import android.os.Build
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.MotionScheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -629,6 +630,7 @@ fun ZalithLauncherTheme(
                 ColorThemeType.VERDANTFIELD -> verdantFieldDark
                 ColorThemeType.URBAN_ASH -> urbanAshDark
                 ColorThemeType.VERDANT_DAWN -> verdantDawnDark
+                ColorThemeType.DUNGEON -> dungeonScheme
                 ColorThemeType.CUSTOM -> customDark(
                     color = customColor,
                     style = customPaletteStyle
@@ -644,6 +646,7 @@ fun ZalithLauncherTheme(
                 ColorThemeType.VERDANTFIELD -> verdantFieldLight
                 ColorThemeType.URBAN_ASH -> urbanAshLight
                 ColorThemeType.VERDANT_DAWN -> verdantDawnLight
+                ColorThemeType.DUNGEON -> dungeonScheme
                 ColorThemeType.CUSTOM -> customLight(
                     color = customColor,
                     style = customPaletteStyle
@@ -680,7 +683,8 @@ fun ZalithLauncherTheme(
         MaterialExpressiveTheme(
             colorScheme = currentDisplayScheme,
             motionScheme = MotionScheme.expressive(),
-            typography = AppTypography,
+            shapes = if (colorTheme == ColorThemeType.DUNGEON) DungeonShapes else Shapes(),
+            typography = if (colorTheme == ColorThemeType.DUNGEON) DungeonTypography else AppTypography,
             content = content
         )
     }

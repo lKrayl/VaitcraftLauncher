@@ -108,11 +108,6 @@ fun AboutInfoScreen(
                             text = stringResource(R.string.about_launcher_version, BuildConfig.VERSION_NAME),
                             button = {
                                 Button(
-                                    onClick = checkUpdate
-                                ) {
-                                    Text(text = stringResource(R.string.upgrade_title))
-                                }
-                                Button(
                                     onClick = { openLink(URL_PROJECT) }
                                 ) {
                                     Text(text = stringResource(R.string.about_launcher_project_link))
@@ -123,7 +118,7 @@ fun AboutInfoScreen(
                         ButtonIconItem(
                             icon = painterResource(R.drawable.img_avatar_movtery),
                             title = stringResource(R.string.about_launcher_author_movtery_title),
-                            text = stringResource(R.string.about_launcher_author_movtery_text, BuildKeys.LAUNCHER_NAME),
+                            text = stringResource(R.string.about_launcher_author_movtery_text, "Zalith Launcher 2"),
                             button = {
                                 Button(
                                     onClick = { openLink(URL_SUPPORT) }
@@ -131,6 +126,11 @@ fun AboutInfoScreen(
                                     Text(text = stringResource(R.string.about_sponsor))
                                 }
                             }
+                        )
+
+                        Text(
+                            text = stringResource(R.string.about_launcher_based_on),
+                            style = androidx.compose.material3.MaterialTheme.typography.bodySmall
                         )
                     }
                 }
