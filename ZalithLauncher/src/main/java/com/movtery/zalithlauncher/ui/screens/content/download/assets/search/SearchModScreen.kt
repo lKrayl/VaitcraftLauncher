@@ -18,8 +18,9 @@
 
 package com.movtery.zalithlauncher.ui.screens.content.download.assets.search
 
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import com.movtery.zalithlauncher.game.download.assets.platform.Platform
 import com.movtery.zalithlauncher.game.download.assets.platform.PlatformClasses
 import com.movtery.zalithlauncher.game.download.assets.platform.curseforge.models.CurseForgeModCategory
@@ -28,7 +29,6 @@ import com.movtery.zalithlauncher.game.download.assets.platform.modrinth.models.
 import com.movtery.zalithlauncher.game.download.assets.platform.modrinth.models.ModrinthModCategory
 import com.movtery.zalithlauncher.game.download.assets.platform.modrinth.models.modrinthModLoaderFilters
 import com.movtery.zalithlauncher.game.version.mod.InstalledMod
-import com.movtery.zalithlauncher.setting.AllSettings
 import com.movtery.zalithlauncher.ui.screens.NormalNavKey
 import com.movtery.zalithlauncher.ui.screens.TitledNavKey
 
@@ -42,9 +42,6 @@ fun SearchModScreen(
     installedInfo: ((Platform, projectId: String) -> InstalledMod?)? = null,
     swapToDownload: (Platform, projectId: String, iconUrl: String?) -> Unit = { _, _, _ -> }
 ) {
-    val initialPlatform = remember {
-        AllSettings.searchModPlatform.getValue()
-    }
     SearchAssetsScreen(
         mainScreenKey = mainScreenKey,
         parentScreenKey = downloadModScreenKey,
@@ -52,10 +49,12 @@ fun SearchModScreen(
         screenKey = NormalNavKey.SearchMod,
         currentKey = downloadModScreenCurrentKey,
         platformClasses = PlatformClasses.MOD,
-        initialPlatform = initialPlatform,
-        onPlatformChange = {
-            AllSettings.searchModPlatform.save(it)
-            onPlatformChange(it)
+        initialPlatform = Platform.MODRINTH,
+        enablePlatform = false,
+        extraFilter = {
+            item {
+                Text(text = "CurseForge: Próximamente. Estamos preparando el acceso oficial.")
+            }
         },
         getCategories = { platform ->
             when (platform) {
