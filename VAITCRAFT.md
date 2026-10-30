@@ -1,6 +1,8 @@
 # Vaitcraft
 
-Fork de **Zalith Launcher 2** (v2.7.2) con otro nombre y una interfaz de piedra oscura, oro y runas.
+Vaitcraft es un launcher Android de Minecraft: Java Edition creado para facilitar el acceso al servidor de Minecraft Vaitcraft. Discord: https://discord.gg/REEMPLAZAR.
+
+Proyecto basado en **Zalith Launcher 2** (v2.7.2), con una interfaz propia de piedra oscura, oro y runas. Conserva los créditos y avisos de licencia de sus autores originales.
 
 ## Compilar el APK (GitHub Actions)
 
