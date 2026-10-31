@@ -88,6 +88,9 @@ object AllSettings : SettingsRegistry() {
      */
     val gameFullScreen = boolSetting("gameFullScreen", true)
 
+    /** Vaitcraft: el modpack inicial ya se instaló correctamente. */
+    val bundledModpackDone = boolSetting("bundledModpackDone", false)
+
     /**
      * 使用 SurfaceView 渲染
      */
