@@ -1,9 +1,6 @@
 name: Vaitcraft Android CI
 
 on:
-  push:
-    branches:
-      - fix/security-and-vaitcraft-bootstrap
   pull_request:
     branches:
       - main
