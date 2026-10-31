@@ -1,6 +1,6 @@
 # Vaitcraft
 
-Fork de **Zalith Launcher 2** (v2.7.2)
+**Launcher de Vaitcraft para celular (Android)**, basado en Zalith Launcher 2 v2.7.2. Permite instalar y ejecutar Minecraft: Java Edition en dispositivos Android y preparar la instancia del servidor Vaitcraft.
 
 ## Atribución y licencias
 
