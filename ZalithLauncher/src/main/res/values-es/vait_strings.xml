@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="theme_color_dungeon">Dungeon</string>
-    <string name="about_launcher_based_on">Vaitcraft está basado en Zalith Launcher 2 (GPL-3.0) de MovTery y colaboradores. No es un producto oficial de Minecraft; no está aprobado ni asociado a Mojang o Microsoft.</string>
+    <string name="about_launcher_based_on">Vaitcraft es un launcher para celular Android que permite instalar y ejecutar Minecraft: Java Edition y preparar el acceso al servidor Vaitcraft. Está basado en Zalith Launcher 2 (GPL-3.0) de MovTery y colaboradores. No es un producto oficial de Minecraft ni está asociado con Mojang o Microsoft.</string>
+    <string name="curseforge_coming_soon">CurseForge: próximamente. Estamos preparando el acceso oficial.</string>
 </resources>
