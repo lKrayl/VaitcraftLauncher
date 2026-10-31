@@ -29,10 +29,13 @@ jobs:
       - name: Build debug APK
         run: |
           chmod +x gradlew
-          ./gradlew :ZalithLauncher:assembleDebug :ZalithLauncher:testDebugUnitTest -Darch=arm64 --stacktrace
+          ./gradlew :ZalithLauncher:assembleDebug -Darch=arm64 --stacktrace
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
           name: Vaitcraft-debug-arm64
           path: ZalithLauncher/build/outputs/apk/debug/*.apk
           if-no-files-found: error
+      - name: Run unit tests
+        if: always()
+        run: ./gradlew :ZalithLauncher:testDebugUnitTest -Darch=arm64 --stacktrace
