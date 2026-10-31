@@ -20,6 +20,7 @@ package com.movtery.zalithlauncher.viewmodel
 
 import android.content.Context
 import android.net.Uri
+import java.io.File
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
@@ -150,11 +151,16 @@ class ModpackImportViewModel : ViewModel() {
     /**
      * 开始导入整合包
      */
+    private suspend fun acceptSuggestedName(name: String): String = name
+
     fun import(
         context: Context,
         uri: Uri,
         onStart: () -> Unit = {},
-        onStop: () -> Unit = {}
+        onStop: () -> Unit = {},
+        localFile: File? = null,
+        useSuggestedName: Boolean = false,
+        onSuccess: () -> Unit = {}
     ) {
         if (importOperation != ModpackImportOperation.None) {
             //当前有别的导入任务，拒绝这次导入
@@ -165,14 +171,16 @@ class ModpackImportViewModel : ViewModel() {
             context = context,
             uri = uri,
             scope = viewModelScope,
-            waitForVersionName = ::waitForVersionName,
-            waitForConfirmMobileData = ::waitForConfirmMobileData
+            waitForVersionName = if (useSuggestedName) ::acceptSuggestedName else ::waitForVersionName,
+            waitForConfirmMobileData = ::waitForConfirmMobileData,
+            localFile = localFile
         ).also {
             it.startImport(
                 onFinished = { version ->
                     importer = null
                     VersionsManager.refresh("[Modpack] ModpackImporter.onFinished", version)
                     importOperation = ModpackImportOperation.Finished
+                    onSuccess()
                     onStop()
                 },
                 onCancelled = {
