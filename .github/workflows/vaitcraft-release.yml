@@ -1,0 +1,51 @@
+name: Vaitcraft Release APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: ABI del APK
+        type: choice
+        options: [arm64, arm, x86_64, x86, all]
+        default: arm64
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+      CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Validate and install signing keystore
+        run: |
+          test -n "$KEYSTORE_BASE64" || { echo 'Missing KEYSTORE_BASE64 secret'; exit 1; }
+          test -n "$STORE_PASSWORD" || { echo 'Missing STORE_PASSWORD secret'; exit 1; }
+          test -n "$KEY_PASSWORD" || { echo 'Missing KEY_PASSWORD secret'; exit 1; }
+          echo "$KEYSTORE_BASE64" | base64 --decode > ZalithLauncher/vaitcraft.jks
+          test -s ZalithLauncher/vaitcraft.jks
+          keytool -list -keystore ZalithLauncher/vaitcraft.jks -storepass "$STORE_PASSWORD" -alias vaitcraft >/dev/null
+      - name: Build signed release APK
+        run: |
+          chmod +x gradlew
+          ./gradlew :ZalithLauncher:assembleRelease -Darch=${{ inputs.arch }} --stacktrace
+      - name: Upload release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vaitcraft-Release-${{ inputs.arch }}
+          path: ZalithLauncher/build/outputs/apk/release/*.apk
+          if-no-files-found: error
