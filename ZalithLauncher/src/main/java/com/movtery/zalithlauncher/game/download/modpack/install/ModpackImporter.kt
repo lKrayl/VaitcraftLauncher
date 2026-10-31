@@ -65,6 +65,8 @@ class ModpackImporter(
     private val scope: CoroutineScope,
     private val waitForVersionName: suspend (String) -> String,
     private val waitForConfirmMobileData: suspend () -> Boolean,
+    /** Archivo local incluido en el APK; si es null se copia desde el Uri seleccionado. */
+    private val localFile: File? = null,
 ) {
     private val taskExecutor = TaskFlowExecutor(scope)
     val taskFlow: StateFlow<List<TitledTask>> = taskExecutor.tasksFlow
@@ -152,7 +154,8 @@ class ModpackImporter(
                     icon = R.drawable.ic_unarchive_outlined
                 ) { task ->
                     task.updateProgress(-1f)
-                    context.copyLocalFile(uri, installerFile)
+                    if (localFile != null) localFile.copyTo(installerFile, overwrite = true)
+                    else context.copyLocalFile(uri, installerFile)
                     //尝试解压压缩包
                     try {
                         JDKZipFile(installerFile).use { zip ->
