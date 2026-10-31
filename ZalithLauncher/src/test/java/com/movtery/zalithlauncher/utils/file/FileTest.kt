@@ -18,22 +18,31 @@
 
 package com.movtery.zalithlauncher.utils.file
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.jackhuang.hmcl.util.DigestUtils
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.io.File
+import java.nio.file.Files
+import kotlin.io.path.createTempDirectory
 
 class FileTest {
 
     @Test
-    fun testCalculateFileSha1() {
-        val file = File("F:\\Download\\geckolib-forge-1.21.8-5.2.2.jar")
-        runBlocking(Dispatchers.IO) {
-            val sha11 = calculateFileSha1(file)
-            println("sha1 1 = $sha11")
-            val sha12 = DigestUtils.digestToString("SHA-1", file.toPath())
-            println("sha1 2 = $sha12")
+    fun testCalculateFileSha1() = runBlocking {
+        val directory = createTempDirectory("file-sha1-test")
+        val file = directory.resolve("sample.txt")
+        try {
+            Files.write(file, "abc".toByteArray(Charsets.UTF_8))
+
+            val actual = calculateFileSha1(file.toFile())
+            val expected = "a9993e364706816aba3e25717850c26c9cd0d89d"
+            val reference = DigestUtils.digestToString("SHA-1", file)
+
+            assertEquals(expected, actual)
+            assertEquals(reference, actual)
+        } finally {
+            file.toFile().delete()
+            directory.toFile().delete()
         }
     }
 }
