@@ -47,6 +47,7 @@ import com.movtery.zalithlauncher.filemanager.FileManagerLauncher
 import com.movtery.zalithlauncher.filemanager.events.FileManagerEvent
 import com.movtery.zalithlauncher.filemanager.events.FileManagerEventRegistrar
 import com.movtery.zalithlauncher.game.control.ControlManager
+import com.movtery.zalithlauncher.game.bundled.BundledModpack
 import com.movtery.zalithlauncher.game.path.getVersionsHome
 import com.movtery.zalithlauncher.game.plugin.PluginLoader
 import com.movtery.zalithlauncher.game.renderer.Renderers
@@ -202,6 +203,11 @@ class MainActivity : BaseAppCompatActivity() {
         //加载插件
         PluginLoader.loadAllPlugins(this, false)
         refreshData()
+
+        // Vaitcraft: importar la instancia incluida solo si aún no existe.
+        if (!isImporting) {
+            BundledModpack.installIfNeeded(this, lifecycleScope, modpackImportViewModel)
+        }
 
         //注册文件管理器事件监听
         fmEventRegistrar = FileManagerEventRegistrar(this, ::onFileManagerEvent).also { it.start() }
