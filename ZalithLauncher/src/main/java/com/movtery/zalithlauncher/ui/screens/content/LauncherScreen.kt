@@ -102,6 +102,7 @@ import com.movtery.zalithlauncher.ui.screens.content.home.rememberActionMenuDrag
 import com.movtery.zalithlauncher.ui.screens.content.home.server.LocalServerCardQuickPlay
 import com.movtery.zalithlauncher.ui.screens.content.home.version.LocalHomeCardLauncher
 import com.movtery.zalithlauncher.ui.screens.content.home.version.LocalHomeCardVersionSettings
+import com.movtery.zalithlauncher.ui.theme.isDungeonTheme
 import com.movtery.zalithlauncher.utils.animation.swapAnimateDpAsState
 import com.movtery.zalithlauncher.viewmodel.ScreenBackStackViewModel
 import kotlin.math.roundToInt
@@ -113,6 +114,12 @@ private const val ActionMenuWeight = 3f
  * 操作菜单停泊槽位与屏幕边缘的间距
  */
 private val ActionMenuOuterPadding = 12.dp
+
+/**
+ * Vaitcraft: tamaño máximo de la tarjeta principal cuando se muestra centrada (tema Dungeon)
+ */
+private val CenteredCardMaxWidth = 380.dp
+private val CenteredCardMaxHeight = 560.dp
 
 @Composable
 fun LauncherScreen(
@@ -181,6 +188,29 @@ fun LauncherScreen(
                 }
             }
 
+            if (isDungeonTheme()) {
+                //Vaitcraft: tarjeta (cuenta + versión + JUGAR) centrada exactamente en el medio de la pantalla
+                val centeredWidth = (maxWidth * 0.9f).coerceAtMost(CenteredCardMaxWidth)
+                val centeredHeight = (maxHeight - ActionMenuOuterPadding * 2).coerceAtMost(CenteredCardMaxHeight)
+
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    ActionMenu(
+                        modifier = Modifier.size(centeredWidth, centeredHeight),
+                        isVisible = isVisible,
+                        isTaller = maxHeight >= 600.dp,
+                        dockedSide = dockedSide,
+                        onLaunchGame = onLaunchGame,
+                        swapTargetValue = 0.dp,
+                        pickUpScale = { 1f },
+                        toAccountManageScreen = toAccountManageScreen,
+                        toVersionManageScreen = toVersionManageScreen,
+                        toVersionSettingsScreen = toVersionSettingsScreen
+                    )
+                }
+            } else {
             // 内容区域
             Row(modifier = Modifier.fillMaxSize()) {
                 // ActionMenu 对接到了 Start，留出空位
@@ -246,6 +276,7 @@ fun LauncherScreen(
                         toVersionSettingsScreen = toVersionSettingsScreen
                     )
                 }
+            }
             }
         }
     }
