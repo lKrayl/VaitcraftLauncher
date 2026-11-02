@@ -81,6 +81,10 @@ sealed interface NormalNavKey : TitledNavKey {
         @Serializable data object Game : Settings {
             @Contextual override val title: AndroidStringText = androidText(R.string.settings_tab_game)
         }
+        /** Vaitcraft Smart Optimization */
+        @Serializable data object SmartOptimization : Settings {
+            @Contextual override val title: AndroidStringText = androidText(R.string.settings_tab_smart_optimization)
+        }
         /** 控制设置屏幕 */
         @Serializable data object Control : Settings {
             @Contextual override val title: AndroidStringText = androidText(R.string.settings_tab_control)
