@@ -37,33 +37,20 @@ import androidx.compose.ui.unit.sp
 import com.movtery.zalithlauncher.R
 import com.movtery.zalithlauncher.setting.AllSettings
 
-/**
- * Vaitcraft: tema "Dungeon" (piedra oscura, oro envejecido y runas moradas).
- * Paleta propia, no usa ningún recurso gráfico de terceros.
- *
- * Los tonos dorados (Gold*) NO se modifican: son los bordes/biseles del marco.
- * Los fondos y runas pasaron de azul abisal a morado profundo; el acento principal
- * es #9D00FF ([Purple]).
- */
+/** Tema "Dungeon": piedra oscura, oro envejecido y runas moradas */
 object Dungeon {
-    //Fondos: escala de morados oscuros
     val Abyss = Color(0xFF0E0716)
     val Slate = Color(0xFF170C26)
     val SlatePanel = Color(0xFF22123A)
     val Stone = Color(0xFF2E1B4B)
     val StoneLight = Color(0xFF5B4580)
-
-    //Dorados (sin cambios)
     val Gold = Color(0xFFC9A24B)
     val GoldBright = Color(0xFFE8C766)
     val GoldDark = Color(0xFF7A5C1E)
-
-    //Acento morado (antes "Rune" azul). Purple = #9D00FF de referencia
     val Purple = Color(0xFF9D00FF)
     val RuneDeep = Color(0xFF3C0F6B)
     val RuneMid = Purple
     val RuneGlow = Color(0xFFC77DFF)
-
     val Parchment = Color(0xFFE9E4D4)
     val TextMuted = Color(0xFFB0A5C4)
 }
@@ -116,7 +103,7 @@ val DungeonShapes = Shapes(
     extraLarge = CutCornerShape(12.dp),
 )
 
-/** Cinzel (SIL OFL 1.1, ver licenses/OFL-Cinzel.txt): títulos, botones, menús y subtítulos; el texto largo (body) mantiene la fuente del sistema */
+/** Cinzel (SIL OFL 1.1, ver licenses/OFL-Cinzel.txt) */
 private val Cinzel = FontFamily(
     Font(R.font.cinzel_variable, FontWeight.Normal),
     Font(R.font.cinzel_variable, FontWeight.Bold),
@@ -132,7 +119,6 @@ val DungeonTypography = baseTypography.copy(
     titleLarge = baseTypography.titleLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
     titleMedium = baseTypography.titleMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold),
     titleSmall = baseTypography.titleSmall.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold),
-    //botones, menús y subtítulos
     labelLarge = baseTypography.labelLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
     labelMedium = baseTypography.labelMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.5.sp),
     labelSmall = baseTypography.labelSmall.copy(fontFamily = Cinzel, fontWeight = FontWeight.Normal, letterSpacing = 0.4.sp),

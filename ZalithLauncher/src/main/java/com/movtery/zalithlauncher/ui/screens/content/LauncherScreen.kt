@@ -115,9 +115,6 @@ private const val ActionMenuWeight = 3f
  */
 private val ActionMenuOuterPadding = 12.dp
 
-/**
- * Vaitcraft: tamaño máximo de la tarjeta principal cuando se muestra centrada (tema Dungeon)
- */
 private val CenteredCardMaxWidth = 380.dp
 private val CenteredCardMaxHeight = 560.dp
 
@@ -189,9 +186,9 @@ fun LauncherScreen(
             }
 
             if (isDungeonTheme()) {
-                //Vaitcraft: tarjeta (cuenta + versión + JUGAR) centrada exactamente en el medio de la pantalla
                 val centeredWidth = (maxWidth * 0.9f).coerceAtMost(CenteredCardMaxWidth)
                 val centeredHeight = (maxHeight - ActionMenuOuterPadding * 2).coerceAtMost(CenteredCardMaxHeight)
+                val centeredIsTaller = maxHeight >= 600.dp
 
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -200,7 +197,7 @@ fun LauncherScreen(
                     ActionMenu(
                         modifier = Modifier.size(centeredWidth, centeredHeight),
                         isVisible = isVisible,
-                        isTaller = maxHeight >= 600.dp,
+                        isTaller = centeredIsTaller,
                         dockedSide = dockedSide,
                         onLaunchGame = onLaunchGame,
                         swapTargetValue = 0.dp,
