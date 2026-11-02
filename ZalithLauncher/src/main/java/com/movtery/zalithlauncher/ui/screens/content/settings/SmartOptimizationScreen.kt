@@ -31,7 +31,9 @@ import com.movtery.zalithlauncher.ui.base.BaseScreen
 import com.movtery.zalithlauncher.ui.screens.NestedNavKey
 import com.movtery.zalithlauncher.ui.screens.NormalNavKey
 import com.movtery.zalithlauncher.ui.screens.TitledNavKey
+import com.movtery.zalithlauncher.setting.unit.floatRange
 import com.movtery.zalithlauncher.ui.screens.content.settings.layouts.CardPosition
+import com.movtery.zalithlauncher.ui.screens.content.settings.layouts.IntSliderSettingsCard
 import com.movtery.zalithlauncher.ui.screens.content.settings.layouts.SettingsCard
 import com.movtery.zalithlauncher.utils.platform.getMaxMemoryForSettings
 
@@ -102,6 +104,25 @@ fun SmartOptimizationScreen(
                     AllSettings.ramAllocation.save((device.totalRamMb * 0.45f).toInt().coerceIn(512, maxMemory))
                     AllSettings.resolutionRatio.save(100)
                 }
+            )
+            IntSliderSettingsCard(
+                modifier = Modifier.fillMaxWidth(),
+                position = CardPosition.Single,
+                unit = AllSettings.ramAllocation,
+                title = stringResource(R.string.vaitcraft_opt_ram_title),
+                valueRange = AllSettings.ramAllocation.floatRange.start..maxMemory.toFloat(),
+                suffix = "MB",
+                fineTuningControl = true
+            )
+            IntSliderSettingsCard(
+                modifier = Modifier.fillMaxWidth(),
+                position = CardPosition.Single,
+                unit = AllSettings.resolutionRatio,
+                title = stringResource(R.string.vaitcraft_opt_resolution_title),
+                summary = stringResource(R.string.vaitcraft_opt_resolution_summary),
+                valueRange = AllSettings.resolutionRatio.floatRange,
+                suffix = "%",
+                fineTuningControl = true
             )
             Text(stringResource(R.string.vaitcraft_opt_ram_title) + ": " +
                 (AllSettings.ramAllocation.state ?: 0) + " MB")
