@@ -1,6 +1,6 @@
 # 📱 LAUNCHER DE VAITCRAFT PARA CELULAR
 
-> **Zalith Launcher 2** es el lanzador ORIGINAL para dispositivos Android diseñado exclusivamente para (En el que esta basado el launcher) [Minecraft: Java Edition](https://www.minecraft.net/). Cuenta con una interfaz moderna y rápida impulsada por **Jetpack Compose** y **Material Design 3**, utilizando [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher/tree/v3_openjdk/app_pojavlauncher/src/main/jni) como núcleo de alto rendimiento.
+> **Zalith Launcher 2** es el lanzador ORIGINAL para dispositivos Android. (En el que esta basado el launcher) [Minecraft: Java Edition](https://www.minecraft.net/). Cuenta con una interfaz moderna y rápida impulsada por **Jetpack Compose** y **Material Design 3**, utilizando [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher/tree/v3_openjdk/app_pojavlauncher/src/main/jni) como núcleo de alto rendimiento.
 
 ![Downloads](https://img.shields.io/github/downloads/ZalithLauncher/ZalithLauncher2/total)
 [![Sponsor](https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors)](https://afdian.com/a/MovTery)
