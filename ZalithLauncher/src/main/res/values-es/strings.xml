@@ -679,6 +679,7 @@
     <string name="vaitcraft_opt_device_soc">Procesador: %1$s</string>
     <string name="vaitcraft_opt_device_abi">Arquitectura: %1$s</string>
     <string name="vaitcraft_opt_device_ram">RAM física: %1$d MB</string>
+    <string name="vaitcraft_opt_profile_title">Perfiles de optimización</string>
     <string name="vaitcraft_opt_profile_performance">Rendimiento</string>
     <string name="vaitcraft_opt_profile_balanced">Equilibrado</string>
     <string name="vaitcraft_opt_profile_quality">Calidad</string>
