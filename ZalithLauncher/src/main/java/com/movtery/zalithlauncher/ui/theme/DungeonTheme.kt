@@ -13,7 +13,7 @@
  * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
  */
 
 package com.movtery.zalithlauncher.ui.theme
@@ -86,10 +86,10 @@ internal val dungeonScheme = darkColorScheme(
     outlineVariant = Dungeon.GoldDark,
     scrim = Color.Black,
     surfaceDim = Dungeon.Abyss,
-    surfaceBright = Dungeon.Stone, //tarjetas = placas de piedra
+    surfaceBright = Dungeon.Stone,
     surfaceContainerLowest = Dungeon.Abyss,
     surfaceContainerLow = Color(0xFF120A1F),
-    surfaceContainer = Dungeon.Slate, //fondo de la app
+    surfaceContainer = Dungeon.Slate,
     surfaceContainerHigh = Dungeon.SlatePanel,
     surfaceContainerHighest = Color(0xFF2B1A47),
 )
@@ -103,43 +103,94 @@ val DungeonShapes = Shapes(
     extraLarge = CutCornerShape(12.dp),
 )
 
-/** Cinzel (SIL OFL 1.1, ver licenses/OFL-Cinzel.txt) */
-private val Cinzel = FontFamily(
-    Font(R.font.cinzel_variable, FontWeight.Normal),
-    Font(R.font.cinzel_variable, FontWeight.Bold),
+/** Fuente Minercraftory */
+private val Minercraftory = FontFamily(
+    Font(R.font.minercraftory, FontWeight.Normal),
+    Font(R.font.minercraftory, FontWeight.Bold),
 )
 
 private val baseTypography = Typography()
 
 val DungeonTypography = baseTypography.copy(
-    displaySmall = baseTypography.displaySmall.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold),
-    headlineLarge = baseTypography.headlineLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 1.sp),
-    headlineMedium = baseTypography.headlineMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 1.sp),
-    headlineSmall = baseTypography.headlineSmall.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
-    titleLarge = baseTypography.titleLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
-    titleMedium = baseTypography.titleMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold),
-    titleSmall = baseTypography.titleSmall.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold),
-    labelLarge = baseTypography.labelLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
-    labelMedium = baseTypography.labelMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.5.sp),
-    labelSmall = baseTypography.labelSmall.copy(fontFamily = Cinzel, fontWeight = FontWeight.Normal, letterSpacing = 0.4.sp),
+    displaySmall = baseTypography.displaySmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold
+    ),
+    headlineLarge = baseTypography.headlineLarge.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 1.sp
+    ),
+    headlineMedium = baseTypography.headlineMedium.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 1.sp
+    ),
+    headlineSmall = baseTypography.headlineSmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.8.sp
+    ),
+    titleLarge = baseTypography.titleLarge.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.8.sp
+    ),
+    titleMedium = baseTypography.titleMedium.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold
+    ),
+    titleSmall = baseTypography.titleSmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold
+    ),
+    labelLarge = baseTypography.labelLarge.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.8.sp
+    ),
+    labelMedium = baseTypography.labelMedium.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.5.sp
+    ),
+    labelSmall = baseTypography.labelSmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Normal,
+        letterSpacing = 0.4.sp
+    ),
 )
 
 @Composable
-fun isDungeonTheme(): Boolean = AllSettings.launcherColorTheme.state == ColorThemeType.DUNGEON
+fun isDungeonTheme(): Boolean =
+    AllSettings.launcherColorTheme.state == ColorThemeType.DUNGEON
 
 /** Marco dorado de las tarjetas (solo con el tema Dungeon) */
 @Composable
 fun cardBorder(): BorderStroke? =
-    if (isDungeonTheme()) BorderStroke(2.dp, Brush.verticalGradient(listOf(Dungeon.GoldBright, Dungeon.GoldDark)))
-    else null
+    if (isDungeonTheme()) {
+        BorderStroke(
+            2.dp,
+            Brush.verticalGradient(
+                listOf(Dungeon.GoldBright, Dungeon.GoldDark)
+            )
+        )
+    } else null
 
 @Composable
 fun actionButtonShape(): Shape =
-    if (isDungeonTheme()) CutCornerShape(6.dp) else ButtonDefaults.shape
+    if (isDungeonTheme()) CutCornerShape(6.dp)
+    else ButtonDefaults.shape
 
 @Composable
 fun actionButtonBorder(enabled: Boolean = true): BorderStroke? = when {
     !isDungeonTheme() -> null
-    enabled -> BorderStroke(2.dp, Brush.verticalGradient(listOf(Dungeon.Gold, Dungeon.GoldDark)))
-    else -> BorderStroke(2.dp, SolidColor(Dungeon.StoneLight))
+    enabled -> BorderStroke(
+        2.dp,
+        Brush.verticalGradient(listOf(Dungeon.Gold, Dungeon.GoldDark))
+    )
+    else -> BorderStroke(
+        2.dp,
+        SolidColor(Dungeon.StoneLight)
+    )
 }
