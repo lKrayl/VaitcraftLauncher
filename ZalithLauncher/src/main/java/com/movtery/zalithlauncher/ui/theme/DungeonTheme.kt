@@ -13,7 +13,7 @@
  * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
  */
 
 package com.movtery.zalithlauncher.ui.theme
@@ -37,24 +37,22 @@ import androidx.compose.ui.unit.sp
 import com.movtery.zalithlauncher.R
 import com.movtery.zalithlauncher.setting.AllSettings
 
-/**
- * Vaitcraft: tema "Dungeon" (piedra oscura, oro envejecido y runas azul abisal).
- * Paleta propia, no usa ningún recurso gráfico de terceros.
- */
+/** Tema "Dungeon": piedra oscura, oro envejecido y runas moradas */
 object Dungeon {
-    val Abyss = Color(0xFF0B0E14)
-    val Slate = Color(0xFF131A24)
-    val SlatePanel = Color(0xFF1B2431)
-    val Stone = Color(0xFF2B3038)
-    val StoneLight = Color(0xFF4A5360)
+    val Abyss = Color(0xFF0E0716)
+    val Slate = Color(0xFF170C26)
+    val SlatePanel = Color(0xFF22123A)
+    val Stone = Color(0xFF2E1B4B)
+    val StoneLight = Color(0xFF5B4580)
     val Gold = Color(0xFFC9A24B)
     val GoldBright = Color(0xFFE8C766)
     val GoldDark = Color(0xFF7A5C1E)
-    val RuneDeep = Color(0xFF18455C)
-    val RuneMid = Color(0xFF2A8FB5)
-    val RuneGlow = Color(0xFF3FD0E0)
+    val Purple = Color(0xFF9D00FF)
+    val RuneDeep = Color(0xFF3C0F6B)
+    val RuneMid = Purple
+    val RuneGlow = Color(0xFFC77DFF)
     val Parchment = Color(0xFFE9E4D4)
-    val TextMuted = Color(0xFFA9A590)
+    val TextMuted = Color(0xFFB0A5C4)
 }
 
 internal val dungeonScheme = darkColorScheme(
@@ -64,12 +62,12 @@ internal val dungeonScheme = darkColorScheme(
     onPrimaryContainer = Dungeon.GoldBright,
     inversePrimary = Dungeon.GoldDark,
     secondary = Dungeon.RuneMid,
-    onSecondary = Dungeon.Abyss,
+    onSecondary = Color.White,
     secondaryContainer = Dungeon.RuneDeep,
-    onSecondaryContainer = Color(0xFF9BE7F2),
+    onSecondaryContainer = Color(0xFFE6C2FF),
     tertiary = Dungeon.RuneGlow,
     onTertiary = Dungeon.Abyss,
-    tertiaryContainer = Color(0xFF0F3340),
+    tertiaryContainer = Color(0xFF2A0F4D),
     onTertiaryContainer = Dungeon.RuneGlow,
     background = Dungeon.Abyss,
     onBackground = Dungeon.Parchment,
@@ -88,12 +86,12 @@ internal val dungeonScheme = darkColorScheme(
     outlineVariant = Dungeon.GoldDark,
     scrim = Color.Black,
     surfaceDim = Dungeon.Abyss,
-    surfaceBright = Dungeon.Stone, //tarjetas = placas de piedra
+    surfaceBright = Dungeon.Stone,
     surfaceContainerLowest = Dungeon.Abyss,
-    surfaceContainerLow = Color(0xFF10161F),
-    surfaceContainer = Dungeon.Slate, //fondo de la app
+    surfaceContainerLow = Color(0xFF120A1F),
+    surfaceContainer = Dungeon.Slate,
     surfaceContainerHigh = Dungeon.SlatePanel,
-    surfaceContainerHighest = Color(0xFF26303D),
+    surfaceContainerHighest = Color(0xFF2B1A47),
 )
 
 /** Esquinas biseladas, como piedra tallada */
@@ -105,37 +103,94 @@ val DungeonShapes = Shapes(
     extraLarge = CutCornerShape(12.dp),
 )
 
-/** Cinzel (SIL OFL 1.1, ver licenses/OFL-Cinzel.txt): solo en títulos; el cuerpo mantiene la fuente del sistema */
-private val Cinzel = FontFamily(
-    Font(R.font.cinzel_variable, FontWeight.Normal),
-    Font(R.font.cinzel_variable, FontWeight.Bold),
+/** Fuente Minercraftory */
+private val Minercraftory = FontFamily(
+    Font(R.font.minercraftory, FontWeight.Normal),
+    Font(R.font.minercraftory, FontWeight.Bold),
 )
 
 private val baseTypography = Typography()
 
 val DungeonTypography = baseTypography.copy(
-    headlineMedium = baseTypography.headlineMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 1.sp),
-    titleLarge = baseTypography.titleLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
-    titleMedium = baseTypography.titleMedium.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold),
-    labelLarge = baseTypography.labelLarge.copy(fontFamily = Cinzel, fontWeight = FontWeight.Bold, letterSpacing = 0.8.sp),
+    displaySmall = baseTypography.displaySmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold
+    ),
+    headlineLarge = baseTypography.headlineLarge.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 1.sp
+    ),
+    headlineMedium = baseTypography.headlineMedium.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 1.sp
+    ),
+    headlineSmall = baseTypography.headlineSmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.8.sp
+    ),
+    titleLarge = baseTypography.titleLarge.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.8.sp
+    ),
+    titleMedium = baseTypography.titleMedium.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold
+    ),
+    titleSmall = baseTypography.titleSmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold
+    ),
+    labelLarge = baseTypography.labelLarge.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.8.sp
+    ),
+    labelMedium = baseTypography.labelMedium.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.5.sp
+    ),
+    labelSmall = baseTypography.labelSmall.copy(
+        fontFamily = Minercraftory,
+        fontWeight = FontWeight.Normal,
+        letterSpacing = 0.4.sp
+    ),
 )
 
 @Composable
-fun isDungeonTheme(): Boolean = AllSettings.launcherColorTheme.state == ColorThemeType.DUNGEON
+fun isDungeonTheme(): Boolean =
+    AllSettings.launcherColorTheme.state == ColorThemeType.DUNGEON
 
 /** Marco dorado de las tarjetas (solo con el tema Dungeon) */
 @Composable
 fun cardBorder(): BorderStroke? =
-    if (isDungeonTheme()) BorderStroke(2.dp, Brush.verticalGradient(listOf(Dungeon.GoldBright, Dungeon.GoldDark)))
-    else null
+    if (isDungeonTheme()) {
+        BorderStroke(
+            2.dp,
+            Brush.verticalGradient(
+                listOf(Dungeon.GoldBright, Dungeon.GoldDark)
+            )
+        )
+    } else null
 
 @Composable
 fun actionButtonShape(): Shape =
-    if (isDungeonTheme()) CutCornerShape(6.dp) else ButtonDefaults.shape
+    if (isDungeonTheme()) CutCornerShape(6.dp)
+    else ButtonDefaults.shape
 
 @Composable
 fun actionButtonBorder(enabled: Boolean = true): BorderStroke? = when {
     !isDungeonTheme() -> null
-    enabled -> BorderStroke(2.dp, Brush.verticalGradient(listOf(Dungeon.Gold, Dungeon.GoldDark)))
-    else -> BorderStroke(2.dp, SolidColor(Dungeon.StoneLight))
+    enabled -> BorderStroke(
+        2.dp,
+        Brush.verticalGradient(listOf(Dungeon.Gold, Dungeon.GoldDark))
+    )
+    else -> BorderStroke(
+        2.dp,
+        SolidColor(Dungeon.StoneLight)
+    )
 }

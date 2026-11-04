@@ -64,6 +64,7 @@ import com.movtery.zalithlauncher.ui.screens.content.settings.GamepadSettingsScr
 import com.movtery.zalithlauncher.ui.screens.content.settings.JavaManageScreen
 import com.movtery.zalithlauncher.ui.screens.content.settings.LauncherSettingsScreen
 import com.movtery.zalithlauncher.ui.screens.content.settings.RendererSettingsScreen
+import com.movtery.zalithlauncher.ui.screens.content.settings.SmartOptimizationScreen
 import com.movtery.zalithlauncher.ui.screens.navigateOnce
 import com.movtery.zalithlauncher.ui.screens.onBack
 import com.movtery.zalithlauncher.ui.screens.rememberTransitionSpec
@@ -113,6 +114,7 @@ fun SettingsScreen(
 private val settingItems = listOf(
     CategoryItem(NormalNavKey.Settings.Renderer, { CategoryIcon(R.drawable.ic_video_settings, R.string.settings_tab_renderer) }, R.string.settings_tab_renderer),
     CategoryItem(NormalNavKey.Settings.Game, { CategoryIcon(R.drawable.ic_rocket_launch_filled, R.string.settings_tab_game) }, R.string.settings_tab_game),
+    CategoryItem(NormalNavKey.Settings.SmartOptimization, { CategoryIcon(R.drawable.ic_rocket_launch_filled, R.string.settings_tab_smart_optimization) }, R.string.settings_tab_smart_optimization),
     CategoryItem(NormalNavKey.Settings.Control, { CategoryIcon(R.drawable.ic_videogame_asset_outlined, R.string.settings_tab_control) }, R.string.settings_tab_control),
     CategoryItem(NormalNavKey.Settings.Gamepad, { CategoryIcon(R.drawable.ic_sports_esports_outlined, R.string.settings_tab_gamepad) }, R.string.settings_tab_gamepad),
     CategoryItem(NormalNavKey.Settings.Launcher, { CategoryIcon(R.drawable.ic_setting_launcher, R.string.settings_tab_launcher) }, R.string.settings_tab_launcher),
@@ -211,6 +213,9 @@ private fun NavigationUI(
                 }
                 entry<NormalNavKey.Settings.Game> {
                     GameSettingsScreen(key, settingsScreenKey, mainScreenKey, eventViewModel)
+                }
+                entry<NormalNavKey.Settings.SmartOptimization> {
+                    SmartOptimizationScreen(key, settingsScreenKey, mainScreenKey)
                 }
                 entry<NormalNavKey.Settings.Control> {
                     ControlSettingsScreen(key, settingsScreenKey, mainScreenKey, eventViewModel, submitError)
