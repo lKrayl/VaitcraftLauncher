@@ -34,10 +34,8 @@ object MobileGluesRenderer : RendererInterface {
         }
 
         val configFile = File(mobileGluesDir, "config.json")
-        if (!configFile.exists() && !configFile.createNewFile()) {
-            throw IllegalStateException(
-                "Could not create MobileGlues configuration file: ${configFile.absolutePath}"
-            )
+        if (!configFile.exists()) {
+            configFile.writeText("{}")
         }
 
         mapOf(
