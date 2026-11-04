@@ -2,6 +2,7 @@ import com.android.build.api.variant.FilterConfiguration.FilterType.ABI
 import com.android.build.api.variant.impl.VariantOutputImpl
 import com.android.build.gradle.tasks.MergeSourceSetFolders
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URL
 
 plugins {
     alias(libs.plugins.android.application)
@@ -38,7 +39,7 @@ val downloadMobileGluesAar by tasks.registering {
 
         mobileGluesAarFile.parentFile.mkdirs()
         val temporaryFile = File(mobileGluesAarFile.parentFile, "MobileGlues-release.aar.download")
-        val sourceUrl = java.net.URL(
+        val sourceUrl = URL(
             "https://raw.githubusercontent.com/ZalithLauncher/ZalithLauncher2/8e1e7717a8b89ac6bb848f85f71bc1da3ed94f63/ZalithLauncher/libs/MobileGlues-release.aar"
         )
         val connection = sourceUrl.openConnection().apply {
