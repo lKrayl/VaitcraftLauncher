@@ -27,6 +27,44 @@ val defaultCurseForgeApiKey = project.findProperty("curseforge_api_key") as? Str
 
 val projectArch: String = System.getProperty("arch", "all")
 
+val mobileGluesAarFile = layout.projectDirectory.file("libs/MobileGlues-release.aar").asFile
+val downloadMobileGluesAar by tasks.registering {
+    outputs.file(mobileGluesAarFile)
+    doLast {
+        if (mobileGluesAarFile.isFile && mobileGluesAarFile.length() == 8521952L) {
+            logger.lifecycle("MobileGlues AAR already present.")
+            return@doLast
+        }
+
+        mobileGluesAarFile.parentFile.mkdirs()
+        val temporaryFile = File(mobileGluesAarFile.parentFile, "MobileGlues-release.aar.download")
+        val sourceUrl = java.net.URL(
+            "https://raw.githubusercontent.com/ZalithLauncher/ZalithLauncher2/8e1e7717a8b89ac6bb848f85f71bc1da3ed94f63/ZalithLauncher/libs/MobileGlues-release.aar"
+        )
+        val connection = sourceUrl.openConnection().apply {
+            connectTimeout = 15_000
+            readTimeout = 60_000
+        }
+        connection.getInputStream().use { input ->
+            temporaryFile.outputStream().use { output -> input.copyTo(output) }
+        }
+        check(temporaryFile.length() == 8521952L) {
+            "Downloaded MobileGlues AAR has an unexpected size: ${temporaryFile.length()} bytes"
+        }
+        if (mobileGluesAarFile.exists() && !mobileGluesAarFile.delete()) {
+            temporaryFile.delete()
+            error("Could not replace the existing MobileGlues AAR.")
+        }
+        check(temporaryFile.renameTo(mobileGluesAarFile)) {
+            "Could not move the downloaded MobileGlues AAR into libs/."
+        }
+    }
+}
+
+tasks.named("preBuild").configure {
+    dependsOn(downloadMobileGluesAar)
+}
+
 fun getKeyFromLocal(envKey: String, fileName: String? = null, default: String? = null): String {
     val key = System.getenv(envKey)
     return key ?: fileName?.let {
@@ -280,6 +318,7 @@ dependencies {
     implementation(libs.process.phoenix)
     implementation(libs.lunarcalendar)
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
+    implementation(files("libs/MobileGlues-release.aar"))
     //Safe
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
